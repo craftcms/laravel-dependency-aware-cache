@@ -1,7 +1,7 @@
 <?php
 
-use Craft\DependencyAwareCache\Dependency\CallbackDependency;
-use Craft\DependencyAwareCache\Facades\DependencyCache;
+use CraftCms\DependencyAwareCache\Dependency\CallbackDependency;
+use CraftCms\DependencyAwareCache\Facades\DependencyCache;
 
 test('plain closure', function () {
     $dependency = new CallbackDependency(static fn () => true);
@@ -14,7 +14,7 @@ test('plain closure', function () {
 test('closure with cache', function () {
     $dependency = new CallbackDependency(static fn (\Illuminate\Cache\Repository $cache) => $cache::class);
 
-    setInaccessibleProperty($dependency, 'data', \Craft\DependencyAwareCache\DependencyAwareRepository::class);
+    setInaccessibleProperty($dependency, 'data', \CraftCms\DependencyAwareCache\DependencyAwareRepository::class);
 
     expect($dependency->isChanged(DependencyCache::store()))->toBeFalse();
 });

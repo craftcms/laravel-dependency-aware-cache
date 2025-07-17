@@ -33,12 +33,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Craft\\DependencyAwareCache\\": "src/"
+            "CraftCms\\DependencyAwareCache\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Craft\\DependencyAwareCache\\Tests\\": "tests/"
+            "CraftCms\\DependencyAwareCache\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -59,10 +59,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Craft\\DependencyAwareCache\\CacheServiceProvider"
+                "CraftCms\\DependencyAwareCache\\CacheServiceProvider"
             ],
             "aliases": {
-                "DependencyCache": "Craft\\DependencyAwareCache\\Facades\\DependencyCache"
+                "DependencyCache": "CraftCms\\DependencyAwareCache\\Facades\\DependencyCache"
             }
         }
     },

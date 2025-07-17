@@ -1,8 +1,8 @@
 <?php
 
-namespace Craft\DependencyAwareCache\Tests;
+namespace CraftCms\DependencyAwareCache\Tests;
 
-use Craft\DependencyAwareCache\CacheServiceProvider;
+use CraftCms\DependencyAwareCache\CacheServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra

@@ -1,9 +1,9 @@
 <?php
 
-namespace Craft\DependencyAwareCache\Facades;
+namespace CraftCms\DependencyAwareCache\Facades;
 
-use Craft\DependencyAwareCache\Dependency\Dependency;
-use Craft\DependencyAwareCache\DependencyAwareRepository;
+use CraftCms\DependencyAwareCache\Dependency\Dependency;
+use CraftCms\DependencyAwareCache\DependencyAwareRepository;
 use Illuminate\Support\Facades\Cache;
 
 /**

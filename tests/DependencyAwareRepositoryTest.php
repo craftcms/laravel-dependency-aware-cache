@@ -1,7 +1,7 @@
 <?php
 
-use Craft\DependencyAwareCache\Dependency\TagDependency;
-use Craft\DependencyAwareCache\Facades\DependencyCache;
+use CraftCms\DependencyAwareCache\Dependency\TagDependency;
+use CraftCms\DependencyAwareCache\Facades\DependencyCache;
 
 test('get with dependency', function () {
     DependencyCache::put('foo', 'value', dependency: new TagDependency('tag'));

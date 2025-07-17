@@ -19,11 +19,11 @@ composer require craftcms/laravel-dependency-aware-cache
 
 The dependency aware repository is hooked up automatically and will be returned when using the `Cache` Facade.
 
-This package also provides a `\Craft\DependencyAwareCache\Facades\DependencyCache` Facade which extends the default `Cache` Facade but provides updated docblocks.
+This package also provides a `\CraftCms\DependencyAwareCache\Facades\DependencyCache` Facade which extends the default `Cache` Facade but provides updated docblocks.
 
 ```php
 use Illuminate\Support\Facades\Cache;
-use Craft\DependencyAwareCache\Facades\DependencyCache;
+use CraftCms\DependencyAwareCache\Facades\DependencyCache;
 
 /** @var DependencyAwareRepository $cache */
 $cache = Cache::store();
@@ -37,7 +37,7 @@ $cache = DependencyCache::store();
 When using the cache, you can specify a dependency that may trigger cache invalidation. Below is an example using the tag dependency:
 
 ```php
-use Craft\DependencyAwareCache\Dependency\TagDependency;
+use CraftCms\DependencyAwareCache\Dependency\TagDependency;
 use Illuminate\Support\Facades\Cache;
 
 Cache::put('item_42_price', 10, null, new TagDependency('item_42'));
@@ -54,13 +54,13 @@ Cache::get('item_42_total'); // null
 
 Other dependencies:
 
-- `Craft\DependencyAwareCache\Dependency\CallbackDependency` - invalidates when the result of a callback changes.
-- `Craft\DependencyAwareCache\Dependency\FileDependency` - invalidates the cache based on file modification time.
-- `Craft\DependencyAwareCache\Dependency\ValueDependency` - invalidates the cache when specified value changes.
+- `CallbackDependency` - invalidates when the result of a callback changes.
+- `FileDependency` - invalidates the cache based on file modification time.
+- `ValueDependency` - invalidates the cache when specified value changes.
 
-- You may combine multiple dependencies using `Craft\DependencyAwareCache\Dependency\AnyDependency` or `Craft\DependencyAwareCache\Dependency\AllDependencies`.
+- You may combine multiple dependencies using `AnyDependency` or `AllDependencies`.
 
-You can implement your own dependency by extending `Craft\DependencyAwareCache\Dependency\Dependency`.
+You can implement your own dependency by extending `Dependency`.
 
 ## Testing
 

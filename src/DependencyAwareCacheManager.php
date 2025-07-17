@@ -1,6 +1,6 @@
 <?php
 
-namespace Craft\DependencyAwareCache;
+namespace CraftCms\DependencyAwareCache;
 
 use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Store;
@@ -11,7 +11,7 @@ class DependencyAwareCacheManager extends CacheManager
     /**
      * Create a new cache repository with the given implementation.
      *
-     * @return \Craft\DependencyAwareCache\DependencyAwareRepository
+     * @return \CraftCms\DependencyAwareCache\DependencyAwareRepository
      */
     public function repository(Store $store, array $config = [])
     {

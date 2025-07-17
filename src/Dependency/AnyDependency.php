@@ -1,6 +1,6 @@
 <?php
 
-namespace Craft\DependencyAwareCache\Dependency;
+namespace CraftCms\DependencyAwareCache\Dependency;
 
 use Illuminate\Cache\Repository;
 use InvalidArgumentException;

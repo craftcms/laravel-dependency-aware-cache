@@ -1,7 +1,7 @@
 <?php
 
-use Craft\DependencyAwareCache\Dependency\FileDependency;
-use Craft\DependencyAwareCache\Facades\DependencyCache;
+use CraftCms\DependencyAwareCache\Dependency\FileDependency;
+use CraftCms\DependencyAwareCache\Facades\DependencyCache;
 use Illuminate\Support\Facades\File;
 
 beforeEach(function () {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Craft\DependencyAwareCache;
+namespace CraftCms\DependencyAwareCache;
 
 use Closure;
-use Craft\DependencyAwareCache\Dependency\Dependency;
+use CraftCms\DependencyAwareCache\Dependency\Dependency;
 use Illuminate\Cache\Repository;
 
 class DependencyAwareRepository extends Repository

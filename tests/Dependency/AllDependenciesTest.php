@@ -1,8 +1,8 @@
 <?php
 
-use Craft\DependencyAwareCache\Dependency\AllDependencies;
-use Craft\DependencyAwareCache\Dependency\CallbackDependency;
-use Craft\DependencyAwareCache\Facades\DependencyCache;
+use CraftCms\DependencyAwareCache\Dependency\AllDependencies;
+use CraftCms\DependencyAwareCache\Dependency\CallbackDependency;
+use CraftCms\DependencyAwareCache\Facades\DependencyCache;
 
 test('AllDependenciesTest', function () {
     $data1 = new class

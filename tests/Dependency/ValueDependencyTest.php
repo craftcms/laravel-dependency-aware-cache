@@ -1,7 +1,7 @@
 <?php
 
-use Craft\DependencyAwareCache\Dependency\ValueDependency;
-use Craft\DependencyAwareCache\Facades\DependencyCache;
+use CraftCms\DependencyAwareCache\Dependency\ValueDependency;
+use CraftCms\DependencyAwareCache\Facades\DependencyCache;
 
 it('matches value', function ($value) {
     $dependency = new ValueDependency($value);

@@ -1,8 +1,8 @@
 <?php
 
-namespace Craft\DependencyAwareCache\Dependency;
+namespace CraftCms\DependencyAwareCache\Dependency;
 
-use Craft\DependencyAwareCache\Facades\DependencyCache;
+use CraftCms\DependencyAwareCache\Facades\DependencyCache;
 use Illuminate\Cache\Repository;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -43,7 +43,7 @@ class TagDependency extends Dependency
         if ($ttl !== null && $ttl < 1) {
             throw new InvalidArgumentException(
                 'TTL must be a positive number or null, to invalidate tags, use the'
-                .' static `\Craft\DependencyAwareCache\Dependency\TagDependency::invalidate()` method.',
+                .' static `\CraftCms\DependencyAwareCache\Dependency\TagDependency::invalidate()` method.',
             );
         }
 

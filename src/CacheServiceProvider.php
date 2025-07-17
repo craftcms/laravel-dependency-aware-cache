@@ -1,6 +1,6 @@
 <?php
 
-namespace Craft\DependencyAwareCache;
+namespace CraftCms\DependencyAwareCache;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;

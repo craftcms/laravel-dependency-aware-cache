@@ -1,7 +1,7 @@
 <?php
 
-use Craft\DependencyAwareCache\Dependency\TagDependency;
-use Craft\DependencyAwareCache\Facades\DependencyCache;
+use CraftCms\DependencyAwareCache\Dependency\TagDependency;
+use CraftCms\DependencyAwareCache\Facades\DependencyCache;
 
 test('invalidate by tag', function () {
     DependencyCache::rememberForever('item_42_price', static fn () => 13, new TagDependency('item_42'));

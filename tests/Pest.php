@@ -1,6 +1,6 @@
 <?php
 
-use Craft\DependencyAwareCache\Tests\TestCase;
+use CraftCms\DependencyAwareCache\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
 
