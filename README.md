@@ -23,6 +23,7 @@ This package also provides a `\CraftCms\DependencyAwareCache\Facades\DependencyC
 
 ```php
 use Illuminate\Support\Facades\Cache;
+use CraftCms\DependencyAwareCache\DependencyAwareRepository;
 use CraftCms\DependencyAwareCache\Facades\DependencyCache;
 
 /** @var DependencyAwareRepository $cache */
