@@ -12,7 +12,7 @@ class DependencyAwareRepository extends Repository
     {
         $value = parent::get($key, $default);
 
-        return $this->checkAndGetValue($key, $value, $default);
+        return $this->checkAndGetValue($value);
     }
 
     public function many(array $keys): array
@@ -20,7 +20,7 @@ class DependencyAwareRepository extends Repository
         $values = [];
 
         foreach (parent::many($keys) as $key => $value) {
-            $values[$key] = $this->checkAndGetValue($key, $value);
+            $values[$key] = $this->checkAndGetValue($value);
         }
 
         return $values;
@@ -116,19 +116,21 @@ class DependencyAwareRepository extends Repository
     /**
      * Checks if the cache dependency has expired and returns a value.
      *
-     * @param  string  $key  The unique key of this item in the cache.
      * @param  mixed  $value  The value of this item in the cache.
-     * @param  mixed  $default  Default value to return if the dependency has been changed.
-     * @return mixed The cache value or `$default` if the dependency has been changed.
+     * @return mixed The cache value or `null` if the dependency has been changed.
      */
-    private function checkAndGetValue(string $key, mixed $value, mixed $default = null): mixed
+    private function checkAndGetValue(mixed $value): mixed
     {
-        if (is_array($value) && isset($value[1]) && $value[1] instanceof Dependency) {
+        if (! is_array($value)) {
+            return $value;
+        }
+
+        if (isset($value[1]) && $value[1] instanceof Dependency) {
             [$value, $dependency] = $value;
 
             /** @var Dependency $dependency */
             if ($dependency->isChanged($this)) {
-                return $default;
+                return null;
             }
         }
 
