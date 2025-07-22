@@ -28,11 +28,11 @@ use InvalidArgumentException;
  */
 class TagDependency extends Dependency
 {
+    /** @var string[] $tags */
+    public array $tags;
+
     public function __construct(
-        /**
-         * @var string[]|string $tags
-         */
-        public array|string $tags,
+        array|string $tags = [],
         public ?int $ttl = null
     ) {
         $this->tags = Arr::wrap($tags);
