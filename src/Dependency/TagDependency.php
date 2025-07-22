@@ -28,16 +28,13 @@ use InvalidArgumentException;
  */
 class TagDependency extends Dependency
 {
-    /** @var string[] */
-    private readonly array $tags;
-
-    private readonly ?int $ttl;
-
-    /**
-     * @param  string[]|string  $tags
-     */
-    public function __construct(array|string $tags, ?int $ttl = null)
-    {
+    public function __construct(
+        /**
+         * @var string[]|string $tags
+         */
+        public array|string $tags,
+        public ?int $ttl = null
+    ) {
         $this->tags = Arr::wrap($tags);
 
         if ($ttl !== null && $ttl < 1) {
@@ -46,8 +43,6 @@ class TagDependency extends Dependency
                 .' static `\CraftCms\DependencyAwareCache\Dependency\TagDependency::invalidate()` method.',
             );
         }
-
-        $this->ttl = $ttl;
     }
 
     protected function generateData(Repository $cache): array
