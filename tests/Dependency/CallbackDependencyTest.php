@@ -35,3 +35,9 @@ test('scope with object', function () {
 
     expect($dependency->isChanged(DependencyCache::store()))->toBeTrue();
 });
+
+it('can be serialized', function () {
+    $dependency = new CallbackDependency(static fn () => '');
+
+    expect(serialize($dependency))->toBeString();
+});
