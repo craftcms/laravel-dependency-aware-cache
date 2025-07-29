@@ -28,7 +28,7 @@ use InvalidArgumentException;
  */
 class TagDependency extends Dependency
 {
-    /** @var string[] $tags */
+    /** @var string[] */
     public array $tags;
 
     public function __construct(
