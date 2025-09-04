@@ -3,7 +3,7 @@
 namespace CraftCms\DependencyAwareCache\Dependency;
 
 use Illuminate\Cache\Repository;
-use Laravel\SerializableClosure\SerializableClosure;
+use Laravel\SerializableClosure\UnsignedSerializableClosure;
 
 /**
  * CallbackDependency represents a dependency based on the result of a callback.
@@ -13,11 +13,11 @@ use Laravel\SerializableClosure\SerializableClosure;
  */
 class CallbackDependency extends Dependency
 {
-    private SerializableClosure $callback;
+    private UnsignedSerializableClosure $callback;
 
     public function __construct(callable $callback)
     {
-        $this->callback = new SerializableClosure($callback);
+        $this->callback = new UnsignedSerializableClosure($callback);
     }
 
     protected function generateData(Repository $cache): mixed
