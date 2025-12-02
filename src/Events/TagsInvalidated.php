@@ -8,6 +8,5 @@ final readonly class TagsInvalidated
 {
     public function __construct(
         public string|array $tags,
-    ) {
-    }
+    ) {}
 }
