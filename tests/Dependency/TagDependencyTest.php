@@ -1,9 +1,13 @@
 <?php
 
 use CraftCms\DependencyAwareCache\Dependency\TagDependency;
+use CraftCms\DependencyAwareCache\Events\TagsInvalidated;
 use CraftCms\DependencyAwareCache\Facades\DependencyCache;
+use Illuminate\Support\Facades\Event;
 
 test('invalidate by tag', function () {
+    Event::fake();
+
     DependencyCache::rememberForever('item_42_price', static fn () => 13, new TagDependency('item_42'));
     DependencyCache::rememberForever('item_42_total', static fn () => 26, new TagDependency('item_42'));
 
@@ -14,6 +18,10 @@ test('invalidate by tag', function () {
 
     expect(DependencyCache::rememberForever('item_42_price', static fn () => null, new TagDependency('item_42')))->toBeNull();
     expect(DependencyCache::rememberForever('item_42_total', static fn () => null, new TagDependency('item_42')))->toBeNull();
+
+    Event::assertDispatched(TagsInvalidated::class, function (TagsInvalidated $event) {
+        return $event->tags === 'item_42';
+    });
 });
 
 test('empty tags', function () {

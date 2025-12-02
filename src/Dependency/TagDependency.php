@@ -2,10 +2,12 @@
 
 namespace CraftCms\DependencyAwareCache\Dependency;
 
+use CraftCms\DependencyAwareCache\Events\TagsInvalidated;
 use CraftCms\DependencyAwareCache\Facades\DependencyCache;
 use Illuminate\Cache\Repository;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Event;
 use InvalidArgumentException;
 
 /**
@@ -75,6 +77,8 @@ class TagDependency extends Dependency
     public static function invalidate(array|string $tags): void
     {
         DependencyCache::store()->deleteMultiple(self::buildCacheKeys((array) $tags));
+
+        Event::dispatch(new TagsInvalidated($tags));
     }
 
     private static function buildCacheKey(string $tag): string
