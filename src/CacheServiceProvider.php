@@ -10,6 +10,7 @@ use CraftCms\DependencyAwareCache\Dependency\TagDependency;
 use CraftCms\DependencyAwareCache\Dependency\ValueDependency;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
+use Laravel\SerializableClosure\UnsignedSerializableClosure;
 
 class CacheServiceProvider extends ServiceProvider
 {
@@ -47,6 +48,7 @@ class CacheServiceProvider extends ServiceProvider
             FileDependency::class,
             TagDependency::class,
             ValueDependency::class,
+            UnsignedSerializableClosure::class,
         ]));
     }
 }

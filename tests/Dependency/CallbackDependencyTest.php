@@ -43,3 +43,9 @@ it('can be serialized', function () {
 
     expect(serialize($dependency))->toBeString();
 });
+
+test('can be cached and unserialized', function () {
+    DependencyCache::rememberForever('test', static fn () => new CallbackDependency(static fn () => 'value'));
+
+    expect(DependencyCache::get('test'))->toBeInstanceOf(CallbackDependency::class);
+});
