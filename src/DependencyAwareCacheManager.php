@@ -11,7 +11,7 @@ class DependencyAwareCacheManager extends CacheManager
     /**
      * Create a new cache repository with the given implementation.
      *
-     * @return \CraftCms\DependencyAwareCache\DependencyAwareRepository
+     * @return DependencyAwareRepository
      */
     public function repository(Store $store, array $config = [])
     {
