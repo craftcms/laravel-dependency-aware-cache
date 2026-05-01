@@ -2,6 +2,12 @@
 
 namespace CraftCms\DependencyAwareCache;
 
+use CraftCms\DependencyAwareCache\Dependency\AllDependencies;
+use CraftCms\DependencyAwareCache\Dependency\AnyDependency;
+use CraftCms\DependencyAwareCache\Dependency\CallbackDependency;
+use CraftCms\DependencyAwareCache\Dependency\FileDependency;
+use CraftCms\DependencyAwareCache\Dependency\TagDependency;
+use CraftCms\DependencyAwareCache\Dependency\ValueDependency;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,5 +26,27 @@ class CacheServiceProvider extends ServiceProvider
         });
 
         Cache::clearResolvedInstances();
+
+        $this->registerSerializableClasses();
+    }
+
+    private function registerSerializableClasses(): void
+    {
+        $existing = $this->app['config']->get('cache.serializable_classes');
+
+        if ($existing === null || $existing === true) {
+            return;
+        }
+
+        $existing = is_array($existing) ? $existing : [];
+
+        $this->app['config']->set('cache.serializable_classes', array_merge($existing, [
+            AllDependencies::class,
+            AnyDependency::class,
+            CallbackDependency::class,
+            FileDependency::class,
+            TagDependency::class,
+            ValueDependency::class,
+        ]));
     }
 }
