@@ -53,13 +53,20 @@ class TagDependency extends Dependency
             return [];
         }
 
-        $tags = $this->getTagsData($cache)
-            ->map(fn ($time) => $time ?? microtime())
-            ->all();
+        $tags = $this->getTagsData($cache)->all();
+        $missing = array_filter($tags, fn ($time) => $time === null);
 
-        $cache->setMultiple($tags, $this->ttl);
+        if ($missing === []) {
+            return $tags;
+        }
 
-        return $tags;
+        // Write only the missing tags, with a new time. Writing back a time that was read
+        // would undo an invalidation that happened since the read.
+        $missing = array_fill_keys(array_keys($missing), microtime());
+
+        $cache->setMultiple($missing, $this->ttl);
+
+        return array_replace($tags, $missing);
     }
 
     public function isChanged(Repository $cache): bool
