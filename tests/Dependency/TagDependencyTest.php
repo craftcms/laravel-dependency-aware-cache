@@ -3,6 +3,7 @@
 use CraftCms\DependencyAwareCache\Dependency\TagDependency;
 use CraftCms\DependencyAwareCache\Events\TagsInvalidated;
 use CraftCms\DependencyAwareCache\Facades\DependencyCache;
+use Illuminate\Cache\Events\CacheHit;
 use Illuminate\Support\Facades\Event;
 
 test('invalidate by tag', function () {
@@ -45,4 +46,19 @@ test('invalid tag', function () {
     $this->expectException(InvalidArgumentException::class);
 
     $dependency->evaluate(DependencyCache::store());
+});
+
+test('an invalidation while tags are being read is not lost', function () {
+    DependencyCache::forever('item_42_price', 13, new TagDependency('item_42'));
+
+    // Invalidate the tag right after the next write reads it, as a concurrent request could
+    Event::listen(CacheHit::class, function () {
+        Event::forget(CacheHit::class);
+        TagDependency::invalidate('item_42');
+    });
+
+    DependencyCache::forever('item_42_total', 26, new TagDependency('item_42'));
+
+    expect(DependencyCache::get('item_42_price'))->toBeNull()
+        ->and(DependencyCache::get('item_42_total'))->toBeNull();
 });
